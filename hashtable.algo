@@ -36,7 +36,6 @@ BEGIN
     write(sum);
     
 END
-
 // la somme des elements qui sont presentés  dans les deux tableaux HASH_TABLE method
 
 ALGORITHM first
@@ -108,4 +107,8 @@ BEGIN
     END_FOR    
 
     write(sum);
+<<<<<<< HEAD
 END
+=======
+END
+>>>>>>> dc573bab4e4d50805c41a900e97b3b2730f48f78
