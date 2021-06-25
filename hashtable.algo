@@ -1,15 +1,13 @@
-// la somme des elements qui sont pas presentés  dans les deux tableaux
+// la somme des elements qui sont pas presentés  dans les deux tableaux :array method
 ALGORITHM first
 VAR
     arr1[1,2,3,4];
     arr1[1,0,9,4];
     sum,i,j :INTEGER:=0;
-
-
 BEGIN
 
-    FOR i FROM 0 TO arr1.length  DO
-        FOR j FROM 0 TO arr1.length  DO
+    FOR i FROM 0 TO arr1.length-1  DO
+        FOR j FROM 0 TO arr1.length-1  DO
             IF (arr1[i]<>arr2[j]) THEN
                 sum:=sum+ arr1[i]+arr2[j];
             END_IF 
@@ -18,8 +16,28 @@ BEGIN
     write(sum);
     
 END
-// la somme des elements qui sont presentés  dans les deux tableaux
-//HASH_TABLE
+// la somme des elements qui sont  presentés  dans les deux tableaux :array method
+ALGORITHM second 
+VAR
+    arr1[1,2,3,4];
+    arr1[1,0,9,4];
+    sum,i,j :INTEGER:=0;
+
+
+BEGIN
+
+    FOR i FROM 0 TO arr1.length-1  DO
+        FOR j FROM 0 TO arr1.length-1  DO
+            IF (arr1[i]<>arr2[j]) THEN
+                sum:=sum+ arr1[i]*2;
+            END_IF 
+        END_FOR
+    END_FOR
+    write(sum);
+    
+END
+// la somme des elements qui sont presentés  dans les deux tableaux HASH_TABLE method
+
 ALGORITHM first
 VAR
     arr1[1,2,3,4];
@@ -27,21 +45,21 @@ VAR
     h:HASH_TABLE<INTEGER,INTEGER>
     sum,i,j :INTEGER:=0;
 BEGIN
-    FOR i FROM 0 TO arr1.length  DO
+    FOR i FROM 0 TO arr1.length-1  DO
        IF (h.lookup(arr1[i])=true) THEN
            insert(arr1[i],2)
            else 
             insert(arr1[i],1)
        END_IF
     END_FOR
-     FOR j FROM 0 TO arr2.length  DO
+     FOR j FROM 0 TO arr2.length-1  DO
        IF (h.lookup(arr2[j])=true) THEN
            insert(arr2[j],2)
            else 
             insert(arr2[j],1)
        END_IF
     END_FOR
-    FOR i FROM 0 TO arr1.length  DO
+    FOR i FROM 0 TO arr1.length-1  DO
       IF (h.get(arr1[i]==2))  THEN 
       sum:=sum +arr1[i]*2
       END_IF
@@ -50,4 +68,43 @@ BEGIN
 
     write(sum);
     
+END
+// la somme des elements qui sont pas presentés dans les deux tableaux HASH_TABLE method
+
+ALGORITHM second 
+VAR
+    arr1[1,2,3,4];
+    arr1[1,0,9,4];
+    h:HASH_TABLE<INTEGER,INTEGER>
+    sum,i,j :INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO arr1.length-1  DO
+       IF (h.lookup(arr1[i])=true) THEN
+           insert(arr1[i],2)
+           else 
+            insert(arr1[i],1)
+       END_IF
+    END_FOR
+     FOR j FROM 0 TO arr2.length-1  DO
+       IF (h.lookup(arr2[j])=true) THEN
+           insert(arr2[j],2)
+           else 
+            insert(arr2[j],1)
+       END_IF
+    END_FOR
+
+    FOR i FROM 0 TO arr1.length-1  DO
+       
+            IF (h.get(arr1[i]==1))  THEN 
+            sum:=sum +arr1[i];
+            END_IF
+    END_FOR    
+  
+    FOR j FROM 0 TO arr2.length-1  DO
+        IF (h.get(arr1[i]==1)and  h.get(arr2[j]==1))  THEN 
+        sum:=sum +arr1[i]+arr2[j];
+        END_IF
+    END_FOR    
+
+    write(sum);
 END
