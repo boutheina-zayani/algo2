@@ -71,44 +71,35 @@ BEGIN
 END
 // la somme des elements qui sont pas presentés dans les deux tableaux HASH_TABLE method
 
-ALGORITHM second 
-VAR
-    arr1[1,2,3,4];
-    arr1[1,0,9,4];
-    h:HASH_TABLE<INTEGER,INTEGER>
-    sum,i,j :INTEGER:=0;
-BEGIN
-    FOR i FROM 0 TO arr1.length-1  DO
-       IF (h.lookup(arr1[i])=true) THEN
-           insert(arr1[i],2)
-           else 
-            insert(arr1[i],1)
-       END_IF
-    END_FOR
-     FOR j FROM 0 TO arr2.length-1  DO
-       IF (h.lookup(arr2[j])=true) THEN
-           insert(arr2[j],2)
-           else 
-            insert(arr2[j],1)
-       END_IF
-    END_FOR
-
-    FOR i FROM 0 TO arr1.length-1  DO
-       
-            IF (h.get(arr1[i]==1))  THEN 
-            sum:=sum +arr1[i];
+ALGORITHM second
+    VAR
+   arr1:= arr1 : ARRAY_OF INTEGER[];
+    arr2:= arr2 : ARRAY_OF INTEGER[];
+    sum:=0;
+    c:BOOLEAN
+    BEGIN
+        FOR i FROM 0 TO arr1.length-1 STEP step  DO
+            c:= false
+            FOR j FROM 0 TO arr2.length-1 STEP step  DO
+                IF (arr1[i]== arr2[j]) THEN
+                    c:=true
+                END_IF
+            END_FOR
+            IF (c==false) THEN
+                 sum=sum+a[i]
             END_IF
-    END_FOR    
-  
-    FOR j FROM 0 TO arr2.length-1  DO
-        IF (h.get(arr1[i]==1)and  h.get(arr2[j]==1))  THEN 
-        sum:=sum +arr1[i]+arr2[j];
-        END_IF
-    END_FOR    
+        END_FOR
 
-    write(sum);
-<<<<<<< HEAD
-END
-=======
-END
->>>>>>> dc573bab4e4d50805c41a900e97b3b2730f48f78
+        FOR j FROM 0 TO arr2.length-1 STEP step  DO
+           c:=false
+           FOR i FROM 0 TO arr1.length-1 STEP step  DO
+               IF (a[i]== b[j]) THEN
+                   c:= true
+               END_IF
+           END_FOR
+           IF (c== false) THEN
+               sum=sum+b[j]
+           END_IF
+        END_FOR
+        write (sum)
+    END
